@@ -1,20 +1,41 @@
-Peer-graded-Assignment-Getting-and-Cleaning-Data-Course-Project
-This project aims to show that you can gather, manipulate, and clean up a data set.
-Examine the requirements The provided data set is organized. The necessary scripts are on the Github repository. A code book on GitHub updates and alters existing codebooks with data to show all variables and summaries computed, units, and any other pertinent information. The analysis files are explained in an easy-to-read README. The student who turned in the work for this project is the author of it.
+Getting and Cleaning Data Course Project
 
+Project Overview
 
-Obtaining and Preparing Course Data for Cleaning This project aims to show that you can gather, manipulate, and clean up a data set. The objective is to produce clean data for analysis at a later time. Your peers will grade you based on a series of project-related yes/no questions. You are going to have to turn in: Three things are needed: 1) a clean data set as mentioned below; 2) a link to a Github repository containing your analysis script; and 3) a code book called CodeBook.md that contains information about the variables, the data, and any modifications or cleanup work you did. A README.md file ought to be included to the repository along with your scripts. This repository clarifiesWearable computing is currently one of the most fascinating subfields in data science (see, for instance, this article). In an attempt to draw in new customers, businesses such as Fitbit, Nike, and Jawbone Up are competing to create the most sophisticated algorithms. The data from the Samsung Galaxy S smartphone's accelerometers are represented in the links to the course website. You can get a detailed explanation at the location where the information was collected:
+The purpose of this project is to demonstrate your ability to collect, work with, and clean a dataset. The goal is to prepare a tidy data set that can be used for later analysis. This project involves data from accelerometers on the Samsung Galaxy S smartphone.
 
+Data Source
 
-http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
-Here are the data for the project:https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zipOne R script called run_analysis should be created.R that carries out the subsequent tasks.
+The data used in this project is from the Human Activity Recognition Using Smartphones Dataset. The data linked to from the course website represents data collected from the accelerometers from the Samsung Galaxy S smartphone.
 
-creates a single data set by combining the test and training sets. simply extracts the measurements for each measurement's mean and standard deviation. labels the activities in the data collection using descriptive activity names. Gives the data set appropriate labels and names for the variables. Makes a second, separate, tidy data set from the step 4 data set, containing the average of each variable for each activity and subject.
+Files Included in This Repository
 
-From Question 1: Could you kindly upload the clean data set that was made in the instructions' fifth step? Kindly provide your dataset as a text file (.txt) that was prepared with write.table() with row.name=FALSE. Avoid pasting datasets into the text field directly.From the evaluation: Is the student's data set neatly submitted? If the data satisfies the tidy data standards of week one—that is, every variable you measure should be in one column and every distinct observation of that variable should be in a separate row—then it can be either wide or long.
+run_analysis.R: This script performs the following actions:
 
-In response to Question 2, kindly provide a link to a Github repository containing the analysis code. As long as the Samsung data is in your working directory, the code should have a file called run_analysis.R in the main directory that can be executed. The clean data set you provided for part one should be the output. A README.md file explaining the code and the operation of the script should be included in the repository.
-Review 2: Github repository with necessary scripts
-Code Book From Synopsis: CodeBook.md is a code book that lists the variables, the data, and any modifications or cleanup work you did on the data.READY ME A README.md is attached to the repository along with my scripts. The functionality and interconnectivity of each script are explained in this repository.##First small data set: Examine and merge data sets Study the topics and blend them together. Examine the data labels and merge them. Examine the features list. Subset the list's standard and mean features only. Apply the same subset to the dataset. Rename elements to make them easier for humans to understand. Examine the list of activities. Make activity names more readable by humans Rename data labels using the name of the activity Combine information, subjects, and labels to a single, small piece of data Put a small data collection in file ##.On the second little data set: average of the activity and subject measurements Prepare a suitable length empty data collection for Subloop across activities after looping through subjects Obtain a complete list of measurements for every task in a subject. Determine the average for every one of these tasks. Put the means in the subject/activity row's following columns. Add a second, small data set to the file.
-Using Rstudio, obtain the raw data sets and place them in the working directory. On a PC with Windows 8.1 installed, the ensuing actions were taken. Rstudio was used to carry out the data cleaning procedures, and R version 3.1.0 was used.download the raw data from the following website: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
-using the following R command to download the data: >setInternet2(TRUE) >url_proj <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip" >download.file(urlproj, destfile="Dataset.zip", mode="wb")unzip the raw data sets >unzip("Dataset.zip")put the raw data sets in the selected working directory called "datacleaningproject" that is same name as in a repo in my Github account. (In other words, my working directory: "C:/Users/SJ/datacleaningproject") > getwd()[1] "C:/Users/SJ/datacleaningproject"Create a tidy data via a R script called run_analysis.R Preparation: data sets and scriptThe data sets and run_analysis.R must be in the working directory. It is based on one of the requirements this project: The code should have a file run_analysis.R in the main directory that can be run as long as the Samsung data is in your working directory. (see "Instructions and Requirements")The input raw data for the run_analys.R are:./train/X_train.txt, ./train/y_train.txt, subject_train.txt;./test/X_test.txt, ./test/y_test.txt, subjecct_test.txt;./activity_labels.txt, ./features.txtThe output tidy data created from run_analysis.R are:./tidy_average_data.txt (180 rows)./combinedcleaningdata.txt (optional)How the script run_analysis.R works via Rstudiousage: > source("run_analysis.R") ## load the script > run_analysis() ##run the scriptThere are 5 main steps in run_analysis.R to process the raw data sets and create the tidy data set.Step0: Remember to install the "reshape2" package. Before beginning any procedures, the package "reshape2" must be installed and loaded.Step 1: Combines the test and training data sets into a single data set (e.g., Read and load the input raw sets. Then, use the "rbind" function to combine three pairs of data sets—for example, X_train.txt, X_test.txt, y_train.txt, y_test.txt, and subject_train.txt, subject_text.txt—into three single data sets.Setp-2: Only extracts the measurements for each measurement's mean and standard deviation. This stage is primarily completed by the "grep" function, which provides the "-mean()|-std()" key search patterns.++ The data sets' column names were converted to lowercase to prevent any needless mistakes (following the instructions from the Coursera course "Week 4 slide-notes: Editing Text Variables"). Acquiring and Cleaning Data); the "gsub" function was used to replace the characters "()" with "" and the characters "-" with "."Step 3: Gives the actions in the data set names that are descriptive. This phase primarily creates a "joinlabel" data frame, which is a one-column data frame with descriptive activity names.Step 4: Give the data set meaningful activity names in an appropriate manner. The primary process involves merging three connected data frames into a single data frame known as "cleandata". In order to get to the final tidy data set, this is the first cleaned data frame. In case of an emergency, a temporary output file named "combinedcleandata.txt" is created.Step 5: Compiles the average of every variable for every activity and every subject into a second, separate, tidy data set.
+Merges the training and the test sets to create one data set.
+Extracts only the measurements on the mean and standard deviation for each measurement.
+Uses descriptive activity names to name the activities in the data set.
+Appropriately labels the data set with descriptive variable names.
+From the data set in the previous step, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+CodeBook.md: This file describes the variables, data, and any transformations or work that was performed to clean up the data.
+
+README.md: This file explains the purpose of the project, how to use the files in this repository, and details about the project.
+
+tidy_data_set.csv: This is the final tidy data set output by the run_analysis.R script.
+
+Steps to Reproduce the Analysis
+
+To reproduce the analysis:
+
+Clone this repository to your local machine.
+Download the data set from this link and unzip it into your working directory.
+Place the run_analysis.R script in your working directory.
+Run the run_analysis.R script.
+The output will be a file named tidy_data_set.csv in your working directory.
+Grading Criteria
+
+The submitted data set is tidy.
+The GitHub repository contains the required scripts.
+The CodeBook.md file modifies and updates the available codebooks with the data to indicate all the variables and summaries calculated, along with units and any other relevant information.
+The README.md file explains the analysis files clearly and understandably.
+The work submitted for this project is the work of the student who submitted it.
